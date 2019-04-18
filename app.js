@@ -1,3 +1,5 @@
+Vue.config.devtools = true
+
 new Vue({
     el: "#jogo",
     data: {
@@ -7,7 +9,7 @@ new Vue({
         maxAttackMoster: 10,
         maxAttackHero: 6,
         maxSpecialAttack: 15,
-        battleHistory: []
+        rawBattleHistory: []
     },
     methods: {
         attack () {
@@ -46,11 +48,24 @@ new Vue({
             this.mosterAttack()
         }
     },
-    mounted () {
-        
+    computed: {
+        battleHistory: {
+            get () {
+                return this.rawBattleHistory.reverse()
+            },
+            set (val) {
+                this.rawBattleHistory = val
+            }
+        }
     },
     watch: {
-        heroLife: (val) => {
+        monsterLife (val) {
+            if (val < 1) {
+                alert('Você Ganhou')
+                this.giveup()
+            }
+        },
+        heroLife (val) {
             if (val > 100) {
                 this.heroLife = 100
                 return
