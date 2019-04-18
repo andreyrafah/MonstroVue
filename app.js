@@ -59,7 +59,13 @@ new Vue({
         }
     },
     watch: {
-        heroLife: (val) => {
+        monsterLife (val) {
+            if (val < 1) {
+                alert('Você Ganhou')
+                this.giveup()
+            }
+        },
+        heroLife (val) {
             if (val > 100) {
                 this.heroLife = 100
                 return
