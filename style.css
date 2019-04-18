@@ -1,0 +1,21 @@
+.progress{
+    height: 15px;
+    background-color: #777;
+    position: relative;
+}
+
+.progress .progress-bar{
+   position: absolute;
+   height: 100%;
+   background-color: #adfd00;
+   width: 100%;
+   /*animation: progress-animation 6s;*/
+}
+
+
+@keyframes progress-animation{
+    0% { width: 0%; }
+    
+    100% { width: 100%}
+    
+}
